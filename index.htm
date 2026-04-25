@@ -1,0 +1,575 @@
+<!DOCTYPE html>
+<html lang="zh-TW">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>MingYang & JhihSyuan Wedding Invitation</title>
+    <!-- 導入圓體風格字體 (模擬內海字體) -->
+    <link href="https://fonts.googleapis.com/css2?family=Zen+Maru+Gothic:wght@400;700;900&family=Noto+Sans+TC:wght@400;700&family=Caveat:wght@700&display=swap" rel="stylesheet">
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script src="https://unpkg.com/lucide@latest"></script>
+    <style>
+        :root {
+            --champagne: #F7E7CE;
+            --sage: #cbe1d4;
+            --coral: #FFBBAE;
+            --soft-pink: #FFF0F0;
+        }
+
+        body {
+            font-family: 'Zen Maru Gothic', 'Noto Sans TC', sans-serif;
+            background-color: #fffdfa;
+            color: #5a5a5a;
+            scroll-behavior: smooth;
+            letter-spacing: 0.02em;
+        }
+
+        .font-english {
+            font-family: 'Caveat', cursive;
+        }
+
+        .glass-nav {
+            background: rgba(255, 255, 255, 0.9);
+            backdrop-filter: blur(15px);
+            -webkit-backdrop-filter: blur(15px);
+            border-bottom: 2px solid var(--champagne);
+            position: fixed;
+            top: 0;
+            width: 100%;
+            z-index: 1000;
+        }
+
+        /* 封面 */
+        .hero-bg {
+            background: linear-gradient(rgba(0,0,0,0.15), rgba(0,0,0,0.15)), url('https://i.postimg.cc/BnKNgSDQ/PXL-20240222-034107761.jpg');
+            background-size: cover;
+            background-position: center;
+            height: 100vh;
+            border-bottom: 12px solid var(--champagne);
+        }
+
+        /* 黑膠唱片 */
+        .vinyl-container {
+            position: relative;
+            width: 130px;
+            height: 130px;
+            margin: 0 auto 2.5rem;
+            cursor: pointer;
+            user-select: none;
+        }
+
+        .vinyl-record {
+            width: 100%;
+            height: 100%;
+            background: #222;
+            border-radius: 50%;
+            position: relative;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            box-shadow: 0 15px 30px rgba(0,0,0,0.1);
+            background-image: repeating-radial-gradient(circle, #222 0, #111 3px, #222 6px);
+        }
+
+        .vinyl-label {
+            width: 45px;
+            height: 45px;
+            background: var(--coral);
+            border-radius: 50%;
+            border: 2px solid #fff;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 10px;
+            color: white;
+            font-weight: bold;
+        }
+
+        .vinyl-arm {
+            position: absolute;
+            top: 5px;
+            right: -15px;
+            width: 18px;
+            height: 85px;
+            background: #ccc;
+            border-radius: 12px;
+            transform-origin: top center;
+            transform: rotate(-35deg);
+            transition: transform 0.6s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+            z-index: 10;
+        }
+
+        .is-playing .vinyl-record {
+            animation: vinyl-spin 5s linear infinite;
+        }
+
+        .is-playing .vinyl-arm {
+            transform: rotate(5deg);
+        }
+
+        @keyframes vinyl-spin {
+            from { transform: rotate(0deg); }
+            to { transform: rotate(360deg); }
+        }
+
+        /* 愛心框倒數樣式 */
+        .heart-timer-container {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            gap: 1.5rem;
+            flex-wrap: wrap;
+        }
+
+        .heart-card {
+            width: 110px;
+            height: 100px;
+            background: white;
+            position: relative;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            clip-path: path('M55 93c-1.6 0-3.3-.5-4.4-1.6C35 79 4 53 4 31 4 16 16 4 31 4c8.2 0 11 3.8 21 10.4C57 7.8 64.8 4 73 4c15 0 27 12 27 27 0 22-31 48-46 61-1.1 1.1-2.8 1.6-4.4 1.6z');
+            filter: drop-shadow(0 8px 15px rgba(0, 0, 0, 0.1));
+            animation: bounce 3s infinite ease-in-out;
+        }
+
+        @keyframes bounce {
+            0%, 100% { transform: translateY(0); }
+            50% { transform: translateY(-12px); }
+        }
+
+        .timer-num {
+            font-size: 2rem;
+            font-weight: 900;
+            color: var(--coral);
+            margin-top: -5px;
+        }
+
+        .timer-unit {
+            font-size: 0.85rem;
+            font-weight: 700;
+            color: rgba(255, 255, 255, 0.8);
+            margin-top: 0.8rem;
+        }
+
+        /* 詳情與日曆 */
+        .calendar {
+            display: grid;
+            grid-template-columns: repeat(7, 1fr);
+            gap: 4px;
+            max-width: 350px;
+            margin: auto;
+            background: white;
+            padding: 20px;
+            border-radius: 40px;
+            box-shadow: 0 15px 35px rgba(247, 231, 206, 0.4);
+            border: 2px solid var(--champagne);
+        }
+
+        .calendar-day {
+            width: 40px;
+            height: 40px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            position: relative;
+        }
+
+        .engagement-day {
+            background-color: var(--sage);
+            color: white;
+            border-radius: 50% 10% 50% 10%;
+            font-weight: bold;
+            cursor: pointer;
+        }
+
+        .wedding-day-container {
+            position: relative;
+            z-index: 10;
+        }
+
+        .heart-bg {
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            width: 48px;
+            height: 48px;
+            fill: var(--coral);
+            z-index: -1;
+        }
+
+        .wedding-day-text {
+            color: white;
+            font-weight: 900;
+            font-size: 1.1rem;
+            text-shadow: 0 1px 2px rgba(0,0,0,0.1);
+        }
+
+        /* 表單輸入框 */
+        .input-field {
+            width: 100%;
+            background-color: #fff;
+            border: 2px solid var(--soft-pink);
+            border-radius: 1.2rem;
+            padding: 1rem 1.5rem;
+            outline: none;
+            transition: all 0.3s;
+        }
+        .input-field:focus {
+            border-color: var(--coral);
+            background-color: #fffefa;
+        }
+
+        .btn-submit {
+            background: linear-gradient(135deg, var(--coral) 0%, #ff9e8d 100%);
+            color: white;
+            border-radius: 1.5rem;
+            font-weight: 700;
+            box-shadow: 0 10px 20px rgba(255, 187, 174, 0.4);
+            transition: all 0.3s;
+            cursor: pointer;
+        }
+        .btn-submit:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 15px 30px rgba(255, 187, 174, 0.5);
+        }
+
+        .accordion-content {
+            max-height: 0;
+            overflow: hidden;
+            transition: max-height 0.4s ease;
+        }
+        .active .accordion-content {
+            max-height: 400px;
+            margin-top: 1rem;
+        }
+    </style>
+</head>
+<body class="pt-16">
+
+    <!-- 音樂播放器 -->
+    <audio id="weddingAudio" loop preload="auto">
+        <source src="https://docs.google.com/uc?export=download&id=1fom6p0VB0ZYifnHVTDHMw9A10fnF2vb-" type="audio/mpeg">
+    </audio>
+
+    <!-- 導覽列 -->
+    <nav class="glass-nav">
+        <div class="max-w-6xl mx-auto px-6 py-4 flex justify-between items-center">
+            <div class="font-black text-2xl text-[#d4af37]">鳴陽 ＆ 芷萱</div>
+            <div class="hidden md:flex space-x-8 text-sm font-bold">
+                <a href="#about" class="hover:text-[#FFBBAE]">關於我們</a>
+                <a href="#details" class="hover:text-[#FFBBAE]">婚禮資訊</a>
+                <a href="#photos" class="hover:text-[#FFBBAE]">婚紗搶先看</a>
+                <a href="#rsvp" class="hover:text-[#FFBBAE]">出席回函</a>
+            </div>
+            <div class="md:hidden text-xs font-bold text-pink-300">2026.11.22</div>
+        </div>
+    </nav>
+
+    <!-- 封面 -->
+    <section class="hero-bg flex items-center justify-center text-white text-center">
+        <div>
+            <h1 class="font-english text-7xl md:text-9xl mb-4 drop-shadow-xl">MingYang & JhihSyuan</h1>
+            <p class="text-2xl md:text-4xl tracking-[0.3em] font-black opacity-95">佳偶天陳，歡喜林門</p>
+        </div>
+    </section>
+
+    <!-- 關於 -->
+    <section id="about" class="py-24 px-8 max-w-4xl mx-auto text-center">
+        <div id="vinyl-btn" class="vinyl-container" onclick="toggleMusic()">
+            <div class="vinyl-arm"></div>
+            <div class="vinyl-record">
+                <div class="vinyl-label">M & J</div>
+            </div>
+            <div class="mt-6 text-xs font-bold tracking-widest text-pink-300">
+                <span id="music-status-text">點擊唱片播點音樂 ♫</span>
+            </div>
+        </div>
+
+        <h3 class="text-4xl font-black text-[#FFBBAE] mb-10">Wedding Invitation</h3>
+        <p class="leading-loose text-gray-500 mb-12 text-xl font-medium">
+            在一起的1223個日子裡<br>
+            以這些細微的碎片組成我們的愛情<br>
+            未來將成為彼此的依靠，攜手共進寫下新的篇章。
+        </p>
+        <div class="bg-white p-10 md:p-16 rounded-[3rem] shadow-xl border-2 border-[#F7E7CE]/30 italic text-gray-600 leading-relaxed text-lg">
+            「人生最幸福的事，就是找到了可以長廂廝守的人，而更幸運的是，遇見在我們生命不同經緯裡所出現的你們。希望有幸，敬邀收到邀請函的每一位朋友，來見證我們這份重要的決定。」
+        </div>
+    </section>
+
+    <!-- 愛心倒數 -->
+    <section class="py-20 bg-[#cbe1d4] overflow-hidden">
+        <h4 class="text-center font-bold text-white mb-10 tracking-widest uppercase text-sm opacity-80">Wedding Countdown</h4>
+        <div class="heart-timer-container">
+            <div class="flex flex-col items-center">
+                <div class="heart-card"><span id="days" class="timer-num">00</span></div>
+                <span class="timer-unit">DAYS</span>
+            </div>
+            <div class="flex flex-col items-center">
+                <div class="heart-card"><span id="hours" class="timer-num">00</span></div>
+                <span class="timer-unit">HOURS</span>
+            </div>
+            <div class="flex flex-col items-center">
+                <div class="heart-card"><span id="minutes" class="timer-num">00</span></div>
+                <span class="timer-unit">MINUTES</span>
+            </div>
+            <div class="flex flex-col items-center">
+                <div class="heart-card"><span id="seconds" class="timer-num">00</span></div>
+                <span class="timer-unit">SECONDS</span>
+            </div>
+        </div>
+    </section>
+
+    <!-- 詳情 -->
+    <section id="details" class="py-24 px-8 max-w-6xl mx-auto grid md:grid-cols-2 gap-16 items-center">
+        <div class="border-l-8 border-[#FFBBAE] pl-10">
+            <h2 class="text-5xl font-black mb-10 text-gray-800">婚禮資訊</h2>
+            <div class="space-y-8 text-xl text-gray-600 font-medium">
+                <div class="flex items-center gap-4">
+                    <i data-lucide="calendar" class="text-[#FFBBAE]"></i>
+                    <span>2026年 11月 22日 (星期日)</span>
+                </div>
+                <div class="flex items-center gap-4">
+                    <i data-lucide="clock" class="text-[#FFBBAE]"></i>
+                    <span>12:00 入席 | 12:30 開席</span>
+                </div>
+                <div class="flex items-start gap-4">
+                    <i data-lucide="map-pin" class="text-[#FFBBAE] mt-1"></i>
+                    <div>
+                        <p class="font-bold text-gray-800 text-2xl">麻豆新松子日本料理</p>
+                        <p class="text-gray-400 text-base mt-1">台南市麻豆區中正路158號</p>
+                    </div>
+                </div>
+            </div>
+
+            <div id="traffic-box" class="mt-12">
+                <button onclick="document.getElementById('traffic-box').classList.toggle('active')" class="w-full flex justify-between items-center bg-[#F7E7CE]/30 px-8 py-4 rounded-full font-bold text-gray-600 hover:bg-[#F7E7CE]/50 transition">
+                    <span>查看交通指引</span>
+                    <i data-lucide="chevron-down" class="w-5 h-5"></i>
+                </button>
+                <div class="accordion-content">
+                    <div class="bg-white p-6 rounded-3xl text-gray-500 text-base border-2 border-dashed border-[#F7E7CE]">
+                        <p>🚗 <strong>停車資訊：</strong>餐廳附有專屬免費停車場。</p>
+                        <p class="mt-4">🚌 <strong>公車資訊：</strong>搭乘黃幹線至「麻豆轉運站」下車，步行約 5-7 分鐘即可抵達。</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="flex flex-col items-center">
+            <p class="mb-6 font-bold text-2xl text-[#FFBBAE]">2026 NOVEMBER</p>
+            <div class="calendar">
+                <div class="text-center text-xs text-gray-300 py-2">日</div>
+                <div class="text-center text-xs text-gray-300 py-2">一</div>
+                <div class="text-center text-xs text-gray-300 py-2">二</div>
+                <div class="text-center text-xs text-gray-300 py-2">三</div>
+                <div class="text-center text-xs text-gray-300 py-2">四</div>
+                <div class="text-center text-xs text-gray-300 py-2">五</div>
+                <div class="text-center text-xs text-gray-300 py-2">六</div>
+                <div class="calendar-day engagement-day group">
+                    1
+                    <span class="absolute bottom-full left-1/2 -translate-x-1/2 mb-2 w-max px-3 py-1 bg-[#5a5a5a] text-white text-xs rounded-lg opacity-0 group-hover:opacity-100 transition-opacity pointer-events-none">我們訂婚啦！</span>
+                </div>
+                <div class="calendar-day text-gray-200">2</div>
+                <div class="calendar-day text-gray-200">3</div>
+                <div class="calendar-day text-gray-200">4</div>
+                <div class="calendar-day text-gray-200">5</div>
+                <div class="calendar-day text-gray-200">6</div>
+                <div class="calendar-day text-gray-200">7</div>
+                <div class="calendar-day">8</div><div class="calendar-day">9</div><div class="calendar-day">10</div><div class="calendar-day">11</div><div class="calendar-day">12</div><div class="calendar-day">13</div><div class="calendar-day">14</div><div class="calendar-day">15</div><div class="calendar-day">16</div><div class="calendar-day">17</div><div class="calendar-day">18</div><div class="calendar-day">19</div><div class="calendar-day">20</div><div class="calendar-day">21</div>
+                <div class="calendar-day wedding-day-container group">
+                    <svg class="heart-bg" viewBox="0 0 24 24"><path d="M12 21.35l-1.45-1.32C5.4 15.36 2 12.28 2 8.5 2 5.42 4.42 3 7.5 3c1.74 0 3.41.81 4.5 2.09C13.09 3.81 14.76 3 16.5 3 19.58 3 22 5.42 22 8.5c0 3.78-3.4 6.86-8.55 11.54L12 21.35z"/></svg>
+                    <span class="wedding-day-text">22</span>
+                </div>
+                <div class="calendar-day">23</div><div class="calendar-day">24</div><div class="calendar-day">25</div><div class="calendar-day">26</div><div class="calendar-day">27</div><div class="calendar-day">28</div><div class="calendar-day">29</div><div class="calendar-day">30</div>
+            </div>
+        </div>
+    </section>
+
+    <!-- 相簿 -->
+    <section id="photos" class="py-24 bg-[#F7E7CE]/10">
+        <div class="max-w-6xl mx-auto px-8 text-center">
+            <h3 class="text-4xl font-black text-[#FFBBAE] mb-12">婚紗搶先看</h3>
+            <div class="grid md:grid-cols-2 gap-12 items-center">
+                <div class="rounded-[3rem] overflow-hidden shadow-2xl border-8 border-white transform -rotate-1 hover:rotate-0 transition duration-500">
+                    <img src="https://i.postimg.cc/BnKNgSDQ/PXL-20240222-034107761.jpg" class="w-full object-cover">
+                </div>
+                <div class="bg-white p-12 rounded-[3rem] shadow-lg border-2 border-dashed border-[#FFBBAE]">
+                    <i data-lucide="camera" class="w-12 h-12 text-[#FFBBAE] mx-auto mb-6"></i>
+                    <p class="text-gray-500 font-bold text-xl mb-8">🤵拍很多組婚紗照👰<br>將陸續更新上傳雲端</p>
+                    <a href="https://drive.google.com/drive/folders/19v4A2-rhVZ6w2rC5SalLBeiX9zh3Z10p?usp=drive_link" target="_blank" class="btn-submit px-12 py-4 inline-block text-xl">點此瀏覽雲端相簿</a>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- 出席回函 -->
+    <section id="rsvp" class="py-24 px-8">
+        <div class="max-w-4xl mx-auto bg-white p-10 md:p-16 rounded-[4rem] shadow-2xl border-4 border-[#F7E7CE]">
+            <div class="text-center mb-16">
+                <h3 class="text-5xl font-black text-gray-800 mb-4">出席回函</h3>
+                <p class="text-xl text-[#FFBBAE] font-bold">期待與您見面 ✨</p>
+            </div>
+
+            <form id="weddingForm">
+                <div class="grid grid-cols-1 md:grid-cols-2 gap-8">
+                    <div class="col-span-1">
+                        <label class="block font-bold text-gray-400 mb-2 ml-2">1. 賓客姓名</label>
+                        <input type="text" name="entry.1698041514" required class="input-field" placeholder="請填寫您的姓名">
+                    </div>
+                    <div class="col-span-1">
+                        <label class="block font-bold text-gray-400 mb-2 ml-2">2. 聯絡電話</label>
+                        <input type="tel" name="entry.1454012303" required class="input-field" placeholder="請填寫您的電話">
+                    </div>
+                    <div class="col-span-1 md:col-span-2">
+                        <label class="block font-bold text-gray-400 mb-2 ml-2">3. 您與新人的關係</label>
+                        <select name="entry.1924215977" required class="input-field appearance-none">
+                            <option value="">請選擇您的關係</option>
+                            <option value="鳴陽的家人親戚">鳴陽的家人親戚</option>
+                            <option value="芷萱的家人親戚">芷萱的家人親戚</option>
+                            <option value="鳴陽的朋友">鳴陽的朋友</option>
+                            <option value="芷萱的朋友">芷萱的朋友</option>
+                            <option value="鳴陽的同事">鳴陽的同事</option>
+                            <option value="芷萱的同事">芷萱的同事</option>
+                        </select>
+                    </div>
+                    <div class="col-span-1">
+                        <label class="block font-bold text-gray-400 mb-2 ml-2">4. 您會參加嗎？</label>
+                        <select name="entry.409004899" required class="input-field appearance-none">
+                            <option value="">請選擇意願</option>
+                            <option value="是">是，我會準時參加</option>
+                            <option value="否">否，心意與你們同在</option>
+                        </select>
+                    </div>
+                    <div class="col-span-1">
+                        <label class="block font-bold text-gray-400 mb-2 ml-2">5. 大人出席人數 (含本人)</label>
+                        <select name="entry.498853907" required class="input-field appearance-none">
+                            <option value="0，不參加">0 (不克參加)</option>
+                            <option value="1">1</option>
+                            <option value="2">2</option>
+                            <option value="3">3</option>
+                            <option value="4">4</option>
+                            <option value="5">5</option>
+                            <option value="6">6</option>
+                            <option value="7">7</option>
+                            <option value="8">8</option>
+                            <option value="9">9</option>
+                            <option value="10">10</option>
+                        </select>
+                    </div>
+                    <div class="col-span-1">
+                        <label class="block font-bold text-gray-400 mb-2 ml-2">6. 兒童座椅需求數量</label>
+                        <select name="entry.500945926" class="input-field appearance-none">
+                            <option value="0，沒有需求">0 (無需求)</option>
+                            <option value="1">1</option>
+                            <option value="2">2</option>
+                            <option value="3">3</option>
+                            <option value="4">4</option>
+                            <option value="5">5</option>
+                        </select>
+                    </div>
+                    <div class="col-span-1">
+                        <label class="block font-bold text-gray-400 mb-2 ml-2">7. 素食人數</label>
+                        <select name="entry.1079101824" class="input-field appearance-none">
+                            <option value="0，沒有需求">0 (無需求)</option>
+                            <option value="1">1</option>
+                            <option value="2">2</option>
+                            <option value="3">3</option>
+                            <option value="4">4</option>
+                            <option value="5">5</option>
+                            <option value="6">6</option>
+                            <option value="7">7</option>
+                            <option value="8">8</option>
+                            <option value="9">9</option>
+                            <option value="10">10</option>
+                        </select>
+                    </div>
+                    <div class="col-span-1 md:col-span-2">
+                        <label class="block font-bold text-gray-400 mb-2 ml-2">8. 喜帖形式需求</label>
+                        <select name="entry.1824818273" required class="input-field appearance-none">
+                            <option value="">請選擇喜帖形式</option>
+                            <option value="電子喜帖">電子喜帖</option>
+                            <option value="實體喜帖">實體喜帖</option>
+                        </select>
+                    </div>
+                    <div class="col-span-1 md:col-span-2">
+                        <label class="block font-bold text-gray-400 mb-2 ml-2">9. 喜帖收件資訊 (地址或 E-mail)</label>
+                        <textarea name="entry.184592447" rows="2" class="input-field" placeholder="填寫地址或 E-mail"></textarea>
+                    </div>
+                    <div class="col-span-2">
+                        <label class="block font-bold text-gray-400 mb-2 ml-2">10. 給新人的話</label>
+                        <textarea name="entry.2110694226" rows="3" class="input-field" placeholder="歡迎寫下對我們的祝福..."></textarea>
+                    </div>
+                    
+                    <button type="submit" class="col-span-2 btn-submit py-6 text-2xl mt-6">
+                        送出回函 ✉
+                    </button>
+                </div>
+            </form>
+            
+            <div id="successMsg" class="hidden mt-12 p-8 bg-[#cbe1d4]/30 text-gray-600 rounded-[3rem] text-center font-bold animate-bounce text-xl border-2 border-[#cbe1d4]">
+                ✨ 收到您的回覆囉！期待與您見面！有任何需要修改的，請直接聯繫鳴陽或芷萱 ✨
+            </div>
+        </div>
+    </section>
+
+    <footer class="py-20 text-center text-gray-300">
+        <div class="font-black text-3xl text-[#d4af37] mb-4">MingYang & JhihSyuan</div>
+        <p class="text-xs tracking-[0.2em] font-bold">2026.11.22 ‧ HAPPILY EVER AFTER</p>
+    </footer>
+
+    <!-- 隱藏 iframe 用於接收 Google Form 的響應，避免頁面跳轉 -->
+    <iframe name="hidden_iframe_target" id="hidden_iframe_target" style="display:none"></iframe>
+
+    <script>
+        const audio = document.getElementById('weddingAudio');
+        const vinylBtn = document.getElementById('vinyl-btn');
+        const statusText = document.getElementById('music-status-text');
+        let isProcessing = false;
+
+        async function toggleMusic() {
+            if (isProcessing) return;
+            isProcessing = true;
+            try {
+                if (audio.paused) {
+                    await audio.play();
+                    vinylBtn.classList.add('is-playing');
+                    statusText.innerText = "音樂播放中 ♫";
+                } else {
+                    audio.pause();
+                    vinylBtn.classList.remove('is-playing');
+                    statusText.innerText = "點擊唱片播點音樂 ♫";
+                }
+            } catch (error) { console.error(error); } finally { setTimeout(() => { isProcessing = false; }, 300); }
+        }
+
+        const targetDate = new Date("Nov 22, 2026 12:30:00").getTime();
+        function updateTimer() {
+            const now = new Date().getTime();
+            const diff = targetDate - now;
+            if (diff <= 0) return;
+            document.getElementById("days").innerText = Math.floor(diff / (1000 * 60 * 60 * 24)).toString().padStart(2, '0');
+            document.getElementById("hours").innerText = Math.floor((diff % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60)).toString().padStart(2, '0');
+            document.getElementById("minutes").innerText = Math.floor((diff % (1000 * 60 * 60)) / (1000 * 60)).toString().padStart(2, '0');
+            document.getElementById("seconds").innerText = Math.floor((diff % (1000 * 60)) / 1000).toString().padStart(2, '0');
+        }
+        setInterval(updateTimer, 1000);
+
+        const form = document.getElementById('weddingForm');
+        form.addEventListener('submit', function(e) {
+            form.action = "https://docs.google.com/forms/d/e/1FAIpQLSfbLu99TM2FSUv9e86__n36h7QKYryiNSUi1XznWQlzGshdDA/formResponse";
+            form.target = "hidden_iframe_target";
+            
+            setTimeout(() => {
+                form.style.display = 'none';
+                document.getElementById('successMsg').classList.remove('hidden');
+                window.scrollTo({ top: document.getElementById('rsvp').offsetTop - 50, behavior: 'smooth' });
+            }, 300);
+        });
+
+        window.onload = () => { lucide.createIcons(); updateTimer(); };
+    </script>
+</body>
+</html>
