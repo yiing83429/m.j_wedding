@@ -273,9 +273,14 @@
 <body class="pt-16">
 
     <!-- 音樂播放器 -->
-    <audio id="weddingAudio" loop preload="none" crossOrigin="anonymous">
-        <source src="https://www.soundhelix.com/examples/mp3/SoundHelix-Song-1.mp3" type="audio/mpeg">
+    <audio id="weddingAudio" loop preload="auto" crossOrigin="anonymous">
+        <source src="https://dl.sndup.net/9qd53/Christina%20Perri%20A%20Thousand%20Years%20Lyrics.mp3" type="audio/mpeg">
     </audio>
+
+    <!-- 浮動音樂按鈕 -->
+    <div id="music-fab" class="music-fab" onclick="toggleMusic()">
+        <i id="music-icon" data-lucide="music"></i>
+    </div>
 
     <!-- 導覽列 -->
     <nav class="glass-nav">
@@ -301,16 +306,6 @@
 
     <!-- 關於與音樂播放 -->
     <section id="about" class="py-16 md:py-24 px-6 max-w-4xl mx-auto text-center">
-        <div id="vinyl-btn" class="vinyl-container" onclick="toggleMusic()">
-            <div class="vinyl-arm"></div>
-            <div class="vinyl-record">
-                <div class="vinyl-label">M & J</div>
-            </div>
-            <div class="mt-6 text-xs font-bold tracking-widest text-pink-300">
-                <span id="music-status-text">點擊播放♫</span>
-            </div>
-        </div>
-
         <h3 class="text-3xl md:text-4xl font-black text-[#FFBBAE] mb-8 md:mb-10">Wedding Invitation</h3>
         <p class="leading-loose text-gray-500 mb-10 md:mb-12 text-lg md:text-xl font-medium">
             在一起的1223個日子裡<br>
@@ -545,53 +540,43 @@
 
     <footer class="py-16 md:py-20 text-center text-gray-300 px-6">
         <div class="font-black text-2xl text-[#d4af37] mb-4">MingYang & JhihSyuan</div>
-        <p class="text-[10px] tracking-[0.2em] font-bold">2026.11.22 ‧ HAPPILY EVER AFTER</p>
+        <p class="text-[10px] tracking-[0.2em] font-bold">2026.11.22 ‧ 婚禮見 </p>
     </footer>
 
     <iframe name="hidden_iframe_target" id="hidden_iframe_target" style="display:none"></iframe>
 
-    <script>
+     <script>
         const audio = document.getElementById('weddingAudio');
-        const vinylBtn = document.getElementById('vinyl-btn');
-        const statusText = document.getElementById('music-status-text');
+        const musicFab = document.getElementById('music-fab');
+        const musicIcon = document.getElementById('music-icon');
         
-        let isProcessing = false;
-        let loadTimeout = null;
+        let isToggling = false; 
 
         async function toggleMusic() {
-            if (isProcessing) return;
-            isProcessing = true;
+            if (isToggling) return;
+            isToggling = true;
+
             try {
                 if (audio.paused) {
-                    statusText.innerText = "正在連線音訊...";
-                    if (audio.readyState === 0) audio.load();
-                    loadTimeout = setTimeout(() => {
-                        if (audio.paused && statusText.innerText === "正在連線音訊...") {
-                            statusText.innerText = "連線稍慢，請再點一次試試";
-                            isProcessing = false;
-                        }
-                    }, 10000);
-                    const playPromise = audio.play();
-                    if (playPromise !== undefined) {
-                        playPromise.then(() => {
-                            clearTimeout(loadTimeout);
-                            vinylBtn.classList.add('is-playing');
-                            statusText.innerText = "音樂播放中 ♫";
-                            isProcessing = false;
-                        }).catch(error => {
-                            clearTimeout(loadTimeout);
-                            statusText.innerText = "點擊唱片播放音樂 ♫";
-                            isProcessing = false;
-                        });
-                    }
+                    musicFab.classList.add('is-playing');
+                    musicIcon.setAttribute('data-lucide', 'pause');
+                    lucide.createIcons();
+
+                    await audio.play();
                 } else {
                     audio.pause();
-                    vinylBtn.classList.remove('is-playing');
-                    statusText.innerText = "點擊唱片播點音樂 ♫";
-                    isProcessing = false;
+                    
+                    musicFab.classList.remove('is-playing');
+                    musicIcon.setAttribute('data-lucide', 'music');
+                    lucide.createIcons();
                 }
             } catch (err) {
-                isProcessing = false;
+                console.error("Playback Error:", err);
+                musicFab.classList.remove('is-playing');
+                musicIcon.setAttribute('data-lucide', 'music');
+                lucide.createIcons();
+            } finally {
+                setTimeout(() => { isToggling = false; }, 300);
             }
         }
 
