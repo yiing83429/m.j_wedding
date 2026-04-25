@@ -48,39 +48,6 @@
             border-bottom: 12px solid var(--champagne);
         }
 
-/* 浮動播放按鈕樣式 */
-        .music-fab {
-            position: fixed;
-            bottom: 30px;
-            right: 30px;
-            width: 56px;
-            height: 56px;
-            background: white;
-            border-radius: 50%;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            box-shadow: 0 4px 15px rgba(0,0,0,0.1);
-            z-index: 2000;
-            cursor: pointer;
-            border: 2px solid var(--champagne);
-            transition: all 0.3s ease;
-        }
-        
-        .music-fab.is-playing {
-            background: var(--coral);
-            border-color: var(--coral);
-            color: white;
-            animation: pulse 2s infinite;
-        }
-
-        @keyframes pulse {
-            0% { box-shadow: 0 0 0 0 rgba(255, 187, 174, 0.7); }
-            70% { box-shadow: 0 0 0 15px rgba(255, 187, 174, 0); }
-            100% { box-shadow: 0 0 0 0 rgba(255, 187, 174, 0); }
-        }
-
-
 
         /* 倒數樣式 */
         .heart-timer-container {
@@ -241,27 +208,19 @@
 </head>
 <body class="pt-16">
 
-    <!-- 音樂播放器 -->
-    <audio id="weddingAudio" loop preload="auto" crossOrigin="anonymous">
-        <source src="https://dl.sndup.net/9qd53/Christina%20Perri%20A%20Thousand%20Years%20Lyrics.mp3" type="audio/mpeg">
-    </audio>
 
-    <!-- 浮動音樂按鈕 -->
-    <div id="music-fab" class="music-fab" onclick="toggleMusic()">
-        <i id="music-icon" data-lucide="music"></i>
-    </div>
 
     <!-- 導覽列 -->
     <nav class="glass-nav">
         <div class="max-w-6xl mx-auto px-4 md:px-6 py-4 flex justify-between items-center">
-            <div class="font-black text-xl md:text-2xl text-[#d4af37]">鳴陽 ＆ 芷萱</div>
+            <div class="font-black text-xl md:text-2xl text-[#d4af37]">鳴陽＆芷萱 婚禮邀請函</div>
             <div class="hidden md:flex space-x-8 text-sm font-bold">
                 <a href="#about" class="hover:text-[#FFBBAE]">關於我們</a>
                 <a href="#details" class="hover:text-[#FFBBAE]">婚禮資訊</a>
                 <a href="#photos" class="hover:text-[#FFBBAE]">婚紗搶先看</a>
                 <a href="#rsvp" class="hover:text-[#FFBBAE]">出席回函</a>
             </div>
-            <div class="text-xs font-bold text-pink-300 md:block">2026.11.22</div>
+            <div class="text-xs font-bold text-[#FFBBAE]-300 md:block">2026.11.22</div>
         </div>
     </nav>
 
@@ -273,7 +232,7 @@
         </div>
     </section>
 
-    <!-- 關於與音樂播放 -->
+    <!-- 關於 -->
     <section id="about" class="py-16 md:py-24 px-6 max-w-4xl mx-auto text-center">
         <h3 class="text-3xl md:text-4xl font-black text-[#FFBBAE] mb-8 md:mb-10">Wedding Invitation</h3>
         <p class="leading-loose text-gray-500 mb-10 md:mb-12 text-lg md:text-xl font-medium">
@@ -515,39 +474,6 @@
     <iframe name="hidden_iframe_target" id="hidden_iframe_target" style="display:none"></iframe>
 
      <script>
-        const audio = document.getElementById('weddingAudio');
-        const musicFab = document.getElementById('music-fab');
-        const musicIcon = document.getElementById('music-icon');
-        
-        let isToggling = false; 
-
-        async function toggleMusic() {
-            if (isToggling) return;
-            isToggling = true;
-
-            try {
-                if (audio.paused) {
-                    musicFab.classList.add('is-playing');
-                    musicIcon.setAttribute('data-lucide', 'pause');
-                    lucide.createIcons();
-
-                    await audio.play();
-                } else {
-                    audio.pause();
-                    
-                    musicFab.classList.remove('is-playing');
-                    musicIcon.setAttribute('data-lucide', 'music');
-                    lucide.createIcons();
-                }
-            } catch (err) {
-                console.error("Playback Error:", err);
-                musicFab.classList.remove('is-playing');
-                musicIcon.setAttribute('data-lucide', 'music');
-                lucide.createIcons();
-            } finally {
-                setTimeout(() => { isToggling = false; }, 300);
-            }
-        }
 
         const targetDate = new Date("Nov 22, 2026 12:30:00").getTime();
         function updateTimer() {
