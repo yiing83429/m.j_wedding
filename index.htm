@@ -247,7 +247,7 @@
 
     <!-- 愛心倒數 -->
     <section class="py-16 bg-[#cbe1d4] overflow-hidden">
-        <h4 class="text-center font-bold text-white mb-8 tracking-widest uppercase text-xs opacity-80">Wedding Countdown</h4>
+        <h4 class="text-center font-bold text-white mb-8 tracking-widest uppercase text-xs opacity-80">💍婚禮倒數⌛</h4>
         <div class="heart-timer-container">
             <div class="flex flex-col items-center">
                 <div class="heart-card"><span id="days" class="timer-num">00</span></div>
@@ -275,11 +275,12 @@
             <div class="space-y-6 md:space-y-8 text-lg md:text-xl text-gray-600 font-medium">
                 <div class="flex items-center gap-4">
                     <i data-lucide="calendar" class="text-[#FFBBAE] w-6 h-6"></i>
-                    <span>2026年11月22日(週日)</span>
+                    <span>2026年 11月 22日(週日)</span>
                 </div>
                 <div class="flex items-center gap-4">
                     <i data-lucide="clock" class="text-[#FFBBAE] w-6 h-6"></i>
-                    <span>12:00 入席 | 12:30 開席</span>
+                    <span>12:00 入席 | 12:30 準時開席</span>
+                    <p class="text-gray-400 text-sm md:text-base mt-1">記得請預留停車時間喲!</p>
                 </div>
                 <div class="flex items-start gap-4">
                     <i data-lucide="map-pin" class="text-[#FFBBAE] mt-1 w-6 h-6"></i>
@@ -297,7 +298,7 @@
                 </button>
                 <div class="accordion-content">
                     <div class="bg-white p-6 rounded-3xl text-gray-500 text-sm md:text-base border-2 border-dashed border-[#F7E7CE]">
-                        <p>🚗 <strong>停車資訊：</strong>餐廳附有專屬免費停車場，路邊白線可停車。</p>
+                        <p>🚗 <strong>停車資訊：</strong>餐廳附有專屬免費汽機車停車場，路邊白線也可停車。</p>
                         <p class="mt-4">🚌 <strong>公車資訊：</strong>搭乘黃幹線至「麻豆轉運站」下車，步行約 5-7 分鐘即可抵達。</p>
                     </div>
                 </div>
@@ -318,7 +319,7 @@
                     1
                     <span class="absolute bottom-full left-1/2 -translate-x-1/2 mb-2 w-max px-3 py-1 bg-[#5a5a5a] text-white text-xs rounded-lg opacity-0 group-hover:opacity-100 transition-opacity pointer-events-none">我們訂婚啦！</span>
                 </div>
-                <div class="calendar-day text-gray-200">2</div><div class="calendar-day text-gray-200">3</div><div class="calendar-day text-gray-200">4</div><div class="calendar-day text-gray-200">5</div><div class="calendar-day text-gray-200">6</div><div class="calendar-day text-gray-200">7</div>
+                <div class="calendar-day">2</div><div class="calendar-day">3</div><div class="calendar-day">4</div><div class="calendar-day">5</div><div class="calendar-day">6</div><div class="calendar-day">7</div>
                 <div class="calendar-day">8</div><div class="calendar-day">9</div><div class="calendar-day">10</div><div class="calendar-day">11</div><div class="calendar-day">12</div><div class="calendar-day">13</div><div class="calendar-day">14</div><div class="calendar-day">15</div><div class="calendar-day">16</div><div class="calendar-day">17</div><div class="calendar-day">18</div><div class="calendar-day">19</div><div class="calendar-day">20</div><div class="calendar-day">21</div>
                 <div class="calendar-day wedding-day-container group">
                     <svg class="heart-bg" viewBox="0 0 24 24">
@@ -337,6 +338,15 @@
         <div class="max-w-6xl mx-auto px-6 text-center">
             <h3 class="text-3xl md:text-4xl font-black text-[#FFBBAE] mb-10 md:mb-12">婚紗搶先看</h3>
             <div class="grid grid-cols-1 md:grid-cols-2 gap-10 md:gap-12 items-center">
+                <div class="rounded-[2rem] md:rounded-[3rem] overflow-hidden shadow-2xl border-4 md:border-8 border-white transform -rotate-1 hover:rotate-0 transition duration-500">
+                    <img src="https://i.postimg.cc/BnKNgSDQ/PXL-20240222-034107761.jpg" class="w-full object-cover" alt="歡迎存照片呀">
+                </div>
+                <div class="rounded-[2rem] md:rounded-[3rem] overflow-hidden shadow-2xl border-4 md:border-8 border-white transform -rotate-1 hover:rotate-0 transition duration-500">
+                    <img src="https://i.postimg.cc/BnKNgSDQ/PXL-20240222-034107761.jpg" class="w-full object-cover" alt="歡迎存照片呀">
+                </div>
+                <div class="rounded-[2rem] md:rounded-[3rem] overflow-hidden shadow-2xl border-4 md:border-8 border-white transform -rotate-1 hover:rotate-0 transition duration-500">
+                    <img src="https://i.postimg.cc/BnKNgSDQ/PXL-20240222-034107761.jpg" class="w-full object-cover" alt="歡迎存照片呀">
+                </div>
                 <div class="rounded-[2rem] md:rounded-[3rem] overflow-hidden shadow-2xl border-4 md:border-8 border-white transform -rotate-1 hover:rotate-0 transition duration-500">
                     <img src="https://i.postimg.cc/BnKNgSDQ/PXL-20240222-034107761.jpg" class="w-full object-cover" alt="歡迎存照片呀">
                 </div>
@@ -398,19 +408,19 @@
                     <!-- 5. 參加人數 -->
                     <div>
                         <label class="block font-bold text-gray-600 mb-3 ml-1 text-base">5.參加人數</label>
-                        <input type="text" name="entry.498853907" required class="input-field" placeholder="填寫參加人數(含本人)">
+                        <input type="text" name="entry.498853907" required class="input-field" placeholder="填參加人數(含本人) / 不出席填0">
                     </div>
 
                     <!-- 6. 兒童座椅 -->
                     <div>
                         <label class="block font-bold text-gray-600 mb-3 ml-1 text-base">6.兒童座椅數量</label>
-                        <input type="text" name="entry.500945926" required class="input-field" placeholder="填數量或無">
+                        <input type="text" name="entry.500945926" required class="input-field" placeholder="填需要的數量 或 無">
                     </div>
 
                     <!-- 7. 素食 -->
                     <div>
                         <label class="block font-bold text-gray-600 mb-3 ml-1 text-base">7.素食人數</label>
-                        <input type="text" name="entry.1079101824" required class="input-field" placeholder="填數量或無">
+                        <input type="text" name="entry.1079101824" required class="input-field" placeholder="填素食者人數 或 無">
                     </div>
 
                     <!-- 8. 喜帖形式 -->
@@ -418,8 +428,8 @@
                         <label class="block font-bold text-gray-600 mb-3 ml-1 text-base">8.喜帖形式</label>
                         <select name="entry.1824818273" required class="input-field">
                             <option value="">請選擇喜帖形式</option>
-                            <option value="電子喜帖">電子喜帖</option>
-                            <option value="紙本喜帖">紙本喜帖</option>
+                            <option value="電子喜帖">電子喜帖📧</option>
+                            <option value="紙本喜帖">紙本喜帖<img src="https://pic.sopili.net/pub/emoji/twitter/2/72x72/1f4ea.png" width=20 height=20></option>
                             <option value="不需要">我會記得，不用發給我</option>
                         </select>
                     </div>
