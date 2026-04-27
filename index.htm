@@ -397,60 +397,42 @@
 
                     <!-- 5. 參加人數 -->
                     <div>
-                        <label class="block font-bold text-gray-600 mb-3 ml-1 text-base">5.參加人數(含本人)</label>
-                        <select name="entry.498853907" class="input-field">
-                            <option value="0，不參加">0 (不克參加)</option>
-                            <option value="1">1</option>
-                            <option value="2">2</option>
-                            <option value="3">3</option>
-                            <option value="4">4</option>
-                            <option value="5">5</option>
-                        </select>
+                        <label class="block font-bold text-gray-600 mb-3 ml-1 text-base">5.參加人數</label>
+                        <input type="text" name="entry.498853907" required class="input-field" placeholder="填寫參加人數(含本人)">
                     </div>
 
                     <!-- 6. 兒童座椅 -->
                     <div>
-                        <label class="block font-bold text-gray-600 mb-3 ml-1 text-base">6.兒童座椅需求數量</label>
-                        <select name="entry.500945926" class="input-field">
-                            <option value="0，沒有需求">0 (無需求)</option>
-                            <option value="1">1</option>
-                            <option value="2">2</option>
-                            <option value="3">3</option>
-                        </select>
+                        <label class="block font-bold text-gray-600 mb-3 ml-1 text-base">6.兒童座椅數量</label>
+                        <input type="text" name="entry.500945926" required class="input-field" placeholder="填數量或無">
                     </div>
 
                     <!-- 7. 素食 -->
                     <div>
                         <label class="block font-bold text-gray-600 mb-3 ml-1 text-base">7.素食人數</label>
-                        <select name="entry.1079101824" class="input-field">
-                           <option value="0，沒有需求">0 (無需求)</option>
-                            <option value="1">1</option>
-                            <option value="2">2</option>
-                            <option value="3">3</option>
-                            <option value="4">4</option>
-                            <option value="5">5</option>
-                        </select>
+                        <input type="text" name="entry.1079101824" required class="input-field" placeholder="填數量或無">
                     </div>
 
                     <!-- 8. 喜帖形式 -->
                     <div>
                         <label class="block font-bold text-gray-600 mb-3 ml-1 text-base">8.喜帖形式</label>
-                        <select name="entry.1824818273" class="input-field">
+                        <select name="entry.1824818273" required class="input-field">
                             <option value="">請選擇喜帖形式</option>
                             <option value="電子喜帖">電子喜帖</option>
                             <option value="紙本喜帖">紙本喜帖</option>
+                            <option value="不需要">我會記得，不用發給我</option>
                         </select>
                     </div>
 
                     <!-- 9. 收件資訊 -->
                     <div>
                         <label class="block font-bold text-gray-600 mb-3 ml-1 text-base">9.喜帖收件資訊(地址/信箱)</label>
-                        <textarea name="entry.184592447" class="input-field h-24 resize-none" placeholder="紙本(填地址)、電子(填E-mail)"></textarea>
+                        <textarea name="entry.184592447"  required class="input-field h-24 resize-none" placeholder="紙本喜帖(填地址)、電子喜帖(填E-mail)"></textarea>
                     </div>
 
                     <!-- 10. 祝福 -->
                     <div>
-                        <label class="block font-bold text-gray-600 mb-3 ml-1 text-base">10.給新人的話</label>
+                        <label class="block font-bold text-gray-600 mb-3 ml-1 text-base">10.給新人的悄悄話</label>
                         <textarea name="entry.2110694226" class="input-field h-32 resize-none" placeholder="想對我們說的話..."></textarea>
                     </div>
                     
@@ -461,14 +443,14 @@
             </form>
             
             <div id="successMsg" class="hidden mt-8 p-6 bg-[#cbe1d4]/30 text-gray-600 rounded-[2rem] text-center font-bold animate-bounce border-2 border-[#cbe1d4]">
-                ✨ 收到您的回覆囉！期待與您見面！有任何需要修改的，請直接聯繫鳴陽或芷萱 ✨
+                ✨收到您的回覆囉！期待與您見面✨<br>有任何需要調整的<br>請直接聯繫鳴陽或芷萱 
             </div>
         </div>
     </section>
 
     <footer class="py-16 md:py-20 text-center text-gray-300 px-6">
         <div class="font-black text-2xl text-[#d4af37] mb-4">MingYang & JhihSyuan</div>
-        <p class="text-[10px] tracking-[0.2em] font-bold">2026.11.22 ‧ 婚禮見 </p>
+        <p class="text-l tracking-[0.2em] font-bold">2026.11.22 ‧ 我們婚禮見 </p>
     </footer>
 
     <iframe name="hidden_iframe_target" id="hidden_iframe_target" style="display:none"></iframe>
