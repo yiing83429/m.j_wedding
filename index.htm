@@ -275,12 +275,13 @@
             <div class="space-y-6 md:space-y-8 text-lg md:text-xl text-gray-600 font-medium">
                 <div class="flex items-center gap-4">
                     <i data-lucide="calendar" class="text-[#FFBBAE] w-6 h-6"></i>
-                    <span>2026年 11月 22日(週日)</span>
+                    <span>2026年 11月 22日 (星期日)</span>
                 </div>
-                <div class="flex items-center gap-4">
-                    <i data-lucide="clock" class="text-[#FFBBAE] w-6 h-6"></i>
-                    <p>12:00 入席 | 12:30 準時開席</p>
-                        <p class="text-sm md:text-base text-red-400 font-bold mt-1 tracking-wider">記得請預留停車時間喲!</p>
+                <div class="flex items-start gap-4">
+                    <i data-lucide="clock" class="text-[#FFBBAE] mt-1 w-6 h-6"></i>
+                    <div>
+                        <p>12:00 入席 | 12:30 開席</p>
+                        <p class="text-sm md:text-base text-red-400 font-bold mt-1 tracking-wider">請提早出門，預留停車時間喲!</p>
                     </div>
                 </div>
                 <div class="flex items-start gap-4">
@@ -288,12 +289,13 @@
                     <div>
                         <a href="https://maps.app.goo.gl/wSHeX97E9K87f6SBA" target="_blank" class="map-link inline-block">
                             <p class="font-bold text-gray-800 text-xl md:text-2xl border-b-2 border-[#FFBBAE]">麻豆新松子日本料理</p>
-                            <p class="text-xs text-[#FFBBAE] font-bold mt-1">⬆️點擊開啟Google Map導航</p>
+                            <p class="text-xs text-[#FFBBAE] font-bold mt-1">點擊開啟Google Map導航</p>
                         </a>
                         <p class="text-gray-400 text-sm md:text-base mt-2">台南市麻豆區中正路158號</p>
                     </div>
                 </div>
             </div>
+
             <div id="traffic-box" class="mt-10 md:mt-12">
                 <button onclick="document.getElementById('traffic-box').classList.toggle('active')" class="w-full flex justify-between items-center bg-[#F7E7CE]/30 px-6 py-4 rounded-full font-bold text-gray-600 hover:bg-[#F7E7CE]/50 transition">
                     <span>查看交通指引</span>
@@ -301,13 +303,12 @@
                 </button>
                 <div class="accordion-content">
                     <div class="bg-white p-6 rounded-3xl text-gray-500 text-sm md:text-base border-2 border-dashed border-[#F7E7CE]">
-                        <p>🚗 <strong>停車資訊：</strong>餐廳附有專屬免費汽機車停車場，路邊白線也可停車。</p>
+                        <p>🚗 <strong>停車資訊：</strong>餐廳附有免費汽機車停車場，路邊白線也可停車。</p>
                         <p class="mt-4">🚌 <strong>公車資訊：</strong>搭乘黃幹線至「麻豆轉運站」下車，步行約 5-7 分鐘即可抵達。</p>
                     </div>
                 </div>
             </div>
         </div>
-
         <div class="flex flex-col items-center order-1 md:order-2">
             <p class="mb-4 md:mb-6 font-bold text-xl md:text-2xl text-[#FFBBAE]">2026 NOVEMBER</p>
             <div class="calendar">
