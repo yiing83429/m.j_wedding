@@ -185,7 +185,7 @@
             aspect-ratio: 1/1;
         }
 
-        /* Lightbox */
+        /* Lightbox 樣式 */
         #lightbox {
             display: none;
             position: fixed;
@@ -203,6 +203,7 @@
             max-width: 90%;
             max-height: 90%;
             border-radius: 8px;
+            box-shadow: 0 0 30px rgba(0,0,0,0.5);
         }
         /* 表單區域樣式 */
         .input-field {
@@ -423,6 +424,11 @@
             </div>
         </div>
     </section>
+    
+    <!-- Lightbox 預覽 -->
+    <div id="lightbox" onclick="closeLightbox()">
+        <img id="lightboxImg" src="" alt="婚紗照放大">
+    </div>
 
     <!-- 出席回函-->
     <section id="rsvp" class="py-16 md:py-24 px-4 md:px-8">
@@ -531,7 +537,22 @@
     <iframe name="hidden_iframe_target" id="hidden_iframe_target" style="display:none"></iframe>
 
      <script>
+        // 圖片預覽功能
+        function openLightbox(url) {
+            const lightbox = document.getElementById('lightbox');
+            const img = document.getElementById('lightboxImg');
+            img.src = url;
+            lightbox.style.display = 'flex';
+            document.body.style.overflow = 'hidden'; // 防止背景滾動
+        }
 
+        function closeLightbox() {
+            const lightbox = document.getElementById('lightbox');
+            lightbox.style.display = 'none';
+            document.body.style.overflow = 'auto';
+        }
+
+        // 倒數計時 
         const targetDate = new Date("Nov 22, 2026 12:30:00").getTime();
         function updateTimer() {
             const now = new Date().getTime();
@@ -550,7 +571,7 @@
             document.getElementById("seconds").innerText = s.toString().padStart(2, '0');
         }
         setInterval(updateTimer, 1000);
-
+        // 表單提交
         const form = document.getElementById('weddingForm');
         form.addEventListener('submit', function(e) {
             form.action = "https://docs.google.com/forms/d/e/1FAIpQLSfbLu99TM2FSUv9e86__n36h7QKYryiNSUi1XznWQlzGshdDA/formResponse";
