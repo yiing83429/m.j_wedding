@@ -161,7 +161,42 @@
             text-shadow: 0 1px 2px rgba(0,0,0,0.1);
             z-index: 20;
         }
+       /* 相簿樣式 */
+        .photo-grid-item {
+            overflow: hidden;
+            border-radius: 1rem;
+            cursor: pointer;
+            transition: transform 0.3s ease;
+        }
+        .photo-grid-item:hover {
+            transform: scale(1.03);
+        }
+        .photo-grid-item img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            aspect-ratio: 1/1;
+        }
 
+        /* Lightbox */
+        #lightbox {
+            display: none;
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(0,0,0,0.9);
+            z-index: 3000;
+            justify-content: center;
+            align-items: center;
+            padding: 20px;
+        }
+        #lightbox img {
+            max-width: 90%;
+            max-height: 90%;
+            border-radius: 8px;
+        }
         /* 表單區域樣式 */
         .input-field {
             width: 100%;
@@ -203,6 +238,27 @@
         .active .accordion-content {
             max-height: 400px;
             margin-top: 1rem;
+        }
+                /* 錯誤提示框 */
+        #audio-error {
+            position: fixed;
+            bottom: 100px;
+            right: 30px;
+            background: rgba(0,0,0,0.8);
+            color: white;
+            padding: 10px 20px;
+            border-radius: 10px;
+            font-size: 12px;
+            display: none;
+            z-index: 3000;
+        }
+        
+        /* 地圖連結懸浮效果 */
+        .map-link {
+            transition: all 0.3s ease;
+        }
+        .map-link:hover {
+            opacity: 0.7;
         }
     </style>
 </head>
@@ -338,22 +394,49 @@
     </section>
 
     <!-- 相簿 -->
-    <section id="photos" class="py-16 md:py-24 bg-[#F7E7CE]/10">
-        <div class="max-w-6xl mx-auto px-6 text-center">
-            <h3 class="text-3xl md:text-4xl font-black text-[#FFBBAE] mb-10 md:mb-12">婚紗搶先看</h3>
-            <div class="grid grid-cols-1 md:grid-cols-2 gap-10 md:gap-12 items-center">
-                <div class="rounded-[2rem] md:rounded-[3rem] overflow-hidden shadow-2xl border-4 md:border-8 border-white transform -rotate-1 hover:rotate-0 transition duration-500">
-                    <img src="https://i.postimg.cc/BnKNgSDQ/PXL-20240222-034107761.jpg" class="w-full object-cover" alt="歡迎存照片呀">
+    <!-- 甜蜜相簿 -->
+    <section id="photos" class="py-20 md:py-28 px-6 bg-white">
+        <div class="max-w-6xl mx-auto">
+            <div class="text-center mb-16">
+                <h2 class="text-4xl md:text-5xl font-black text-gray-800 mb-4">甜蜜回憶</h2>
+                <div class="w-20 h-1 bg-[#FFBBAE] mx-auto rounded-full"></div>
+                <p class="mt-6 text-gray-400 tracking-widest font-english text-2xl">Our Beautiful Moments</p>
+            </div>
+            
+            <!-- 照片牆網格 -->
+            <div class="grid grid-cols-2 md:grid-cols-3 gap-4 md:gap-6">
+                <div class="photo-grid-item shadow-lg" onclick="openLightbox('https://images.unsplash.com/photo-1519741497674-611481863552?auto=format&fit=crop&q=80&w=800')">
+                    <img src="https://images.unsplash.com/photo-1519741497674-611481863552?auto=format&fit=crop&q=80&w=600" alt="婚紗照 1">
                 </div>
-                <div class="rounded-[2rem] md:rounded-[3rem] overflow-hidden shadow-2xl border-4 md:border-8 border-white transform -rotate-1 hover:rotate-0 transition duration-500">
-                    <img src="https://i.postimg.cc/BnKNgSDQ/PXL-20240222-034107761.jpg" class="w-full object-cover" alt="歡迎存照片呀">
+                <div class="photo-grid-item shadow-lg" onclick="openLightbox('https://images.unsplash.com/photo-1511795409834-ef04bbd61622?auto=format&fit=crop&q=80&w=800')">
+                    <img src="https://images.unsplash.com/photo-1511795409834-ef04bbd61622?auto=format&fit=crop&q=80&w=600" alt="婚紗照 2">
                 </div>
-                <div class="rounded-[2rem] md:rounded-[3rem] overflow-hidden shadow-2xl border-4 md:border-8 border-white transform -rotate-1 hover:rotate-0 transition duration-500">
-                    <img src="https://i.postimg.cc/BnKNgSDQ/PXL-20240222-034107761.jpg" class="w-full object-cover" alt="歡迎存照片呀">
+                <div class="photo-grid-item shadow-lg" onclick="openLightbox('https://images.unsplash.com/photo-1522673607200-1648832cee98?auto=format&fit=crop&q=80&w=800')">
+                    <img src="https://images.unsplash.com/photo-1522673607200-1648832cee98?auto=format&fit=crop&q=80&w=600" alt="婚紗照 3">
                 </div>
-                <div class="rounded-[2rem] md:rounded-[3rem] overflow-hidden shadow-2xl border-4 md:border-8 border-white transform -rotate-1 hover:rotate-0 transition duration-500">
-                    <img src="https://i.postimg.cc/BnKNgSDQ/PXL-20240222-034107761.jpg" class="w-full object-cover" alt="歡迎存照片呀">
+                <div class="photo-grid-item shadow-lg" onclick="openLightbox('https://images.unsplash.com/photo-1515934751635-c81c6bc9a2d8?auto=format&fit=crop&q=80&w=800')">
+                    <img src="https://images.unsplash.com/photo-1515934751635-c81c6bc9a2d8?auto=format&fit=crop&q=80&w=600" alt="婚紗照 4">
                 </div>
+                <div class="photo-grid-item shadow-lg" onclick="openLightbox('https://images.unsplash.com/photo-1583939003579-730e3918a45a?auto=format&fit=crop&q=80&w=800')">
+                    <img src="https://images.unsplash.com/photo-1583939003579-730e3918a45a?auto=format&fit=crop&q=80&w=600" alt="婚紗照 5">
+                </div>
+                <div class="photo-grid-item shadow-lg" onclick="openLightbox('https://images.unsplash.com/photo-1519225421980-715cb0215aed?auto=format&fit=crop&q=80&w=800')">
+                    <img src="https://images.unsplash.com/photo-1519225421980-715cb0215aed?auto=format&fit=crop&q=80&w=600" alt="婚紗照 6">
+                </div>
+                <div class="photo-grid-item shadow-lg" onclick="openLightbox('https://images.unsplash.com/photo-1465495910483-0d6745778503?auto=format&fit=crop&q=80&w=800')">
+                    <img src="https://images.unsplash.com/photo-1465495910483-0d6745778503?auto=format&fit=crop&q=80&w=600" alt="婚紗照 7">
+                </div>
+                <div class="photo-grid-item shadow-lg" onclick="openLightbox('https://images.unsplash.com/photo-1510076857177-7470076d4098?auto=format&fit=crop&q=80&w=800')">
+                    <img src="https://images.unsplash.com/photo-1510076857177-7470076d4098?auto=format&fit=crop&q=80&w=600" alt="婚紗照 8">
+                </div>
+                <div class="photo-grid-item shadow-lg" onclick="openLightbox('https://images.unsplash.com/photo-1532712938310-34cb3982ef74?auto=format&fit=crop&q=80&w=800')">
+                    <img src="https://images.unsplash.com/photo-1532712938310-34cb3982ef74?auto=format&fit=crop&q=80&w=600" alt="婚紗照 9">
+                </div>
+            </div>
+            <p class="text-center mt-10 text-gray-400 text-sm italic">★ 點擊照片可以放大查看唷！</p>
+        </div>
+    </section>
+
                 <div class="bg-white p-8 md:p-12 rounded-[2rem] md:rounded-[3rem] shadow-lg border-2 border-dashed border-[#FFBBAE]">
                     <i data-lucide="camera" class="w-10 h-10 text-[#FFBBAE] mx-auto mb-6"></i>
                     <p class="text-gray-500 font-bold text-lg md:text-xl mb-6 md:mb-8">🤵拍很多組婚紗照👰<br>將陸續更新上傳雲端</p>
@@ -451,7 +534,7 @@
                     </div>
                     
                     <button type="submit" class="btn-submit text-xl md:text-2xl mt-6">
-                        送出回函 ✉
+                        ✅確定填寫正確<br>就可以送出囉
                     </button>
                 </div>
             </form>
