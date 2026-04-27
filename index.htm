@@ -279,18 +279,21 @@
                 </div>
                 <div class="flex items-center gap-4">
                     <i data-lucide="clock" class="text-[#FFBBAE] w-6 h-6"></i>
-                    <span>12:00 入席 | 12:30 準時開席</span>
-                    <span><p class="text-gray-400 text-sm md:text-base mt-1">記得請預留停車時間喲!</p></span>
+                    <p>12:00 入席 | 12:30 準時開席</p>
+                        <p class="text-sm md:text-base text-red-400 font-bold mt-1 tracking-wider">記得請預留停車時間喲!</p>
+                    </div>
                 </div>
                 <div class="flex items-start gap-4">
                     <i data-lucide="map-pin" class="text-[#FFBBAE] mt-1 w-6 h-6"></i>
                     <div>
-                        <p class="font-bold text-gray-800 text-xl md:text-2xl">麻豆新松子日本料理</p>
-                        <p class="text-gray-400 text-sm md:text-base mt-1">台南市麻豆區中正路158號</p>
+                        <a href="https://maps.app.goo.gl/wSHeX97E9K87f6SBA" target="_blank" class="map-link inline-block">
+                            <p class="font-bold text-gray-800 text-xl md:text-2xl border-b-2 border-[#FFBBAE]">麻豆新松子日本料理</p>
+                            <p class="text-xs text-[#FFBBAE] font-bold mt-1">⬆️點擊開啟Google Map導航</p>
+                        </a>
+                        <p class="text-gray-400 text-sm md:text-base mt-2">台南市麻豆區中正路158號</p>
                     </div>
                 </div>
             </div>
-
             <div id="traffic-box" class="mt-10 md:mt-12">
                 <button onclick="document.getElementById('traffic-box').classList.toggle('active')" class="w-full flex justify-between items-center bg-[#F7E7CE]/30 px-6 py-4 rounded-full font-bold text-gray-600 hover:bg-[#F7E7CE]/50 transition">
                     <span>查看交通指引</span>
