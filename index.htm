@@ -15,13 +15,24 @@
             --coral: #FFBBAE;
             --soft-pink: #FFF0F0;
         }
-        /* 套用自定義鼠標 */
+        /* 1. 全域游標設定 */
         html, body {
-            cursor: url('https://i.postimg.cc/rsfvz9h9/wu-biao-ti8.png'), default;
+            cursor: url('https://i.postimg.cc/8zhysHXW/wu-biao-ti9-20211103171738.png'), auto;
         }
-        /* 確保可點擊元素保有原來（預設）的鼠標樣式 */
-        a, button, .photo-grid-item, .engagement-day, .calendar-day, select, input, textarea {
-            cursor: auto;
+
+        /* 2. 移動至按鈕、超連結、相簿圖片、展開面板時的游標 */
+        a, button, .photo-grid-item, .map-link, [onclick] {
+            cursor: url('https://i.postimg.cc/762w8DRz/dou-pi-dong-dong1.png'), pointer !important;
+        }
+
+        /* 3. 移動至輸入框、下拉選單、文字區域時的游標 */
+        input, select, textarea {
+            cursor: url('https://i.postimg.cc/8zQvqPnT/wu-biao-ti2-20260428202115.png'), text !important;
+        }
+
+        /* 燈箱展開後的游標 */
+        #lightbox {
+            cursor: url('https://i.postimg.cc/762w8DRz/dou-pi-dong-dong1.png'), auto;
         }
         body {
             font-family: 'Zen Maru Gothic', 'Noto Sans TC', sans-serif;
