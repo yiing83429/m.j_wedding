@@ -59,17 +59,14 @@
         }
 
 /* 封面主底圖設定 */
-
         .hero-bg {
             background: linear-gradient(rgba(0,0,0,0.15), rgba(0,0,0,0.15)), url('https://duk.tw/ncG18P.jpg');
-            background-size: contain; /* 修改為 contain 以完整顯示圖片 */
-            background-repeat: no-repeat;
+            background-size: cover;
             background-position: center;
-            background-color: #fffdfa; /* 補滿空隙的底色 */
-            height: 100vh;
+            width: 100%;
+            aspect-ratio: 3 / 2; /* 強制保持照片的 3:2 比例，這樣 cover 就不會裁切 */
             border-bottom: 12px solid var(--champagne);
         }
-
         
         /* 倒數樣式 */
         .heart-timer-container {
