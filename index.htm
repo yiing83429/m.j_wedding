@@ -59,14 +59,18 @@
         }
 
 /* 封面主底圖設定 */
+
         .hero-bg {
-            background: linear-gradient(rgba(0,0,0,0), rgba(0,0,0,0)), url('https://duk.tw/ncG18P.jpg');
-            background-size: cover;
+            background: linear-gradient(rgba(0,0,0,0.15), rgba(0,0,0,0.15)), url('https://duk.tw/ncG18P.jpg');
+            background-size: contain; /* 修改為 contain 以完整顯示圖片 */
+            background-repeat: no-repeat;
             background-position: center;
+            background-color: #fffdfa; /* 補滿空隙的底色 */
             height: 100vh;
             border-bottom: 12px solid var(--champagne);
         }
 
+        
         /* 倒數樣式 */
         .heart-timer-container {
             display: flex;
