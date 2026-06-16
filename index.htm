@@ -12,20 +12,22 @@
         :root {
             --hydrangea-mist: #e8e0ef;
             --hydrangea-blue: #a3c4dc;
-            --coral: #c5a3dc;
-            --soft-pink: #f1f6fa;
+            --hydrangea-purple: #c5a3dc;
+            --mist-blue: #f1f6fa;
+            --text-grey: #7a8fa6;
         }
-        /* 1. 全域游標設定 */
+
+        /* 1. 全域與自定義游標設定 */
         html, body {
             cursor: url('https://i.postimg.cc/bwp5q8Zx/wu-biao-ti8.png'), auto;
         }
 
-        /* 2. 移動至按鈕、超連結、相簿圖片、展開面板時的游標 */
+        /* 移動至按鈕、超連結、相簿圖片、展開面板時的游標 */
         a, button, .photo-grid-item, .map-link, [onclick] {
             cursor: url('https://i.postimg.cc/xTvzKVtz/dou-pi.png'), pointer !important;
         }
 
-        /* 3. 移動至輸入框、下拉選單、文字區域時的游標 */
+        /* 移動至輸入框、下拉選單、文字區域時的游標 */
         input, select, textarea {
             cursor: url('https://i.postimg.cc/8zQvqPnT/wu-biao-ti2-20260428202115.png'), text !important;
         }
@@ -34,6 +36,8 @@
         #lightbox {
             cursor: url('https://i.postimg.cc/bwp5q8Zx/wu-biao-ti8.png'), auto;
         }
+
+        /* 2. 基本排版與字體 */
         body {
             font-family: 'Zen Maru Gothic', 'Noto Sans TC', sans-serif;
             background-color: #fcfdfe;
@@ -47,6 +51,7 @@
             font-family: 'Caveat', cursive;
         }
 
+        /* 3. 導覽列與首頁封面 */
         .glass-nav {
             background: rgba(255, 255, 255, 0.9);
             backdrop-filter: blur(15px);
@@ -58,9 +63,8 @@
             z-index: 1000;
         }
 
-/* 封面主底圖設定 */
         .hero-bg {
-            background: linear-gradient(rgba(0,0,0,0.15), rgba(0,0,0,0.15)), url('https://duk.tw/ncG18P.jpg');
+            background: linear-gradient(rgba(163, 196, 220, 0.25), rgba(197, 163, 220, 0.3)), url('https://duk.tw/ncG18P.jpg');
             background-size: cover;
             background-position: center;
             width: 100%;
@@ -68,7 +72,7 @@
             border-bottom: 12px solid var(--hydrangea-mist);
         }
         
-        /* 倒數樣式 */
+        /* 4. 婚禮倒數時鐘樣式 */
         .heart-timer-container {
             display: flex;
             justify-content: center;
@@ -88,41 +92,16 @@
             align-items: center;
             justify-content: center;
             clip-path: path('M37.5 63c-1.1 0-2.2-.4-3-1.1C23.8 53 3 35.5 3 21 3 10.7 10.7 3 21 3c5.6 0 7.5 2.6 16.5 7.1C46.5 5.5 51.5 3 57 3c10.3 0 18.3 8 18.3 18.3 0 15-21 32.5-31.2 41.2-.8.8-1.9 1-3 1.5z');
-            filter: drop-shadow(0 4px 8px rgba(0, 0, 0, 0.1));
+            /* 同時啟用彈跳動畫與呼吸發光動畫 */
             animation: bounce 3s infinite ease-in-out, glow 2s infinite alternate;
             border: 2px solid rgba(255, 255, 255, 0.5);
         }
 
-        @media (min-width: 768px) {
-            .heart-card {
-                width: 110px;
-                height: 100px;
-                clip-path: path('M55 93c-1.6 0-3.3-.5-4.4-1.6C35 79 4 53 4 31 4 16 16 4 31 4c8.2 0 11 3.8 21 10.4C57 7.8 64.8 4 73 4c15 0 27 12 27 27 0 22-31 48-46 61-1.1 1.1-2.8 1.6-4.4 1.6z');
-            }
-            .heart-timer-container { gap: 1.5rem; }
-        }
-
-        /* --- 修正後的婚禮倒數特效 --- */
-         @keyframes bounce { 0%, 100% { transform: translateY(0); } 50% { transform: translateY(-10px); } }
-        
-        /* 呼吸光暈動畫 */
-        @keyframes glow {
-            0%, 100% {
-                filter: drop-shadow(0 4px 8px rgba(163, 196, 220, 0.35)) drop-shadow(0 0 5px rgba(255, 255, 255, 0.6));
-            }
-            50% {
-                filter: drop-shadow(0 8px 20px rgba(197, 163, 220, 0.7)) drop-shadow(0 0 12px rgba(197, 163, 220, 0.4));
-            }
-        }
         .timer-num {
             font-size: 1.3rem;
             font-weight: 900;
-            color: var(--coral);
+            color: var(--hydrangea-blue);
             margin-top: -5px;
-        }
-
-        @media (min-width: 768px) {
-            .timer-num { font-size: 2rem; }
         }
 
         .timer-unit {
@@ -132,7 +111,7 @@
             margin-top: 0.4rem;
         }
 
-        /* 詳情與日曆 */
+        /* 5. 婚禮詳情與日曆 */
         .calendar {
             display: grid;
             grid-template-columns: repeat(7, 1fr);
@@ -143,7 +122,7 @@
             background: white;
             padding: 20px;
             border-radius: 40px;
-            box-shadow: 0 15px 35px rgba(247, 231, 206, 0.4);
+            box-shadow: 0 15px 35px rgba(163, 196, 220, 0.2);
             border: 2px solid var(--hydrangea-mist);
         }
 
@@ -178,7 +157,7 @@
             height: 100%;
             max-width: 48px;
             max-height: 48px;
-            fill: var(--coral);
+            fill: var(--hydrangea-purple);
             z-index: -1;
         }
 
@@ -189,16 +168,19 @@
             text-shadow: 0 1px 2px rgba(0,0,0,0.1);
             z-index: 20;
         }
-       /* 相簿樣式 */
+
+        /* 6. 婚紗相簿與彈出燈箱 */
         .photo-grid-item {
             overflow: hidden;
             border-radius: 1rem;
             cursor: pointer;
             transition: transform 0.3s ease;
         }
+        
         .photo-grid-item:hover {
             transform: scale(1.03);
         }
+        
         .photo-grid-item img {
             width: 100%;
             height: 100%;
@@ -206,7 +188,6 @@
             aspect-ratio: 1/1;
         }
 
-        /* Lightbox 樣式 */
         #lightbox {
             display: none;
             position: fixed;
@@ -220,17 +201,19 @@
             align-items: center;
             padding: 20px;
         }
+        
         #lightbox img {
             max-width: 90%;
             max-height: 90%;
             border-radius: 8px;
             box-shadow: 0 0 30px rgba(0,0,0,0.5);
         }
-        /* 表單區域樣式 */
+
+        /* 7. 表單欄位與提交按鈕 */
         .input-field {
             width: 100%;
             background-color: #fff;
-            border: 2px solid var(--soft-pink);
+            border: 2px solid var(--mist-blue);
             border-radius: 1.2rem;
             padding: 1rem 1.25rem;
             outline: none;
@@ -238,23 +221,25 @@
             font-size: 1rem;
             -webkit-appearance: none;
         }
+        
         .input-field:focus {
-            border-color: var(--coral);
+            border-color: var(--hydrangea-purple);
             background-color: #fffefa;
-            box-shadow: 0 0 10px rgba(255, 187, 174, 0.1);
+            box-shadow: 0 0 10px rgba(197, 163, 220, 0.15);
         }
 
         .btn-submit {
-            background: linear-gradient(135deg, var(--coral) 0%, #ff9e8d 100%);
+            background: linear-gradient(135deg, var(--hydrangea-blue) 0%, var(--hydrangea-purple) 100%);
             color: white;
             border-radius: 1.5rem;
             font-weight: 700;
-            box-shadow: 0 10px 20px rgba(255, 187, 174, 0.4);
+            box-shadow: 0 10px 20px rgba(163, 196, 220, 0.3);
             transition: all 0.3s;
             cursor: pointer;
             width: 100%;
             padding: 1.25rem;
         }
+        
         .btn-submit:active {
             transform: scale(0.98);
         }
@@ -264,15 +249,45 @@
             overflow: hidden;
             transition: max-height 0.4s ease;
         }
+        
         .active .accordion-content {
             max-height: 400px;
             margin-top: 1rem;
         }
 
+        /* 8. 響應式媒體查詢 (RWD) 與 動畫效果定義 */
+        @media (min-width: 768px) {
+            .heart-card {
+                width: 110px;
+                height: 100px;
+                clip-path: path('M55 93c-1.6 0-3.3-.5-4.4-1.6C35 79 4 53 4 31 4 16 16 4 31 4c8.2 0 11 3.8 21 10.4C57 7.8 64.8 4 73 4c15 0 27 12 27 27 0 22-31 48-46 61-1.1 1.1-2.8 1.6-4.4 1.6z');
+            }
+            .heart-timer-container { 
+                gap: 1.5rem; 
+            }
+            .timer-num { 
+                font-size: 2rem; 
+            }
+        }
+
+        /* 彈跳動畫 */
+        @keyframes bounce { 
+            0%, 100% { transform: translateY(0); } 
+            50% { transform: translateY(-10px); } 
+        }
+        
+        /* 呼吸光暈動畫：利用 drop-shadow 完美繞過 clip-path 的裁切阻擋 */
+        @keyframes glow {
+            0%, 100% {
+                filter: drop-shadow(0 4px 6px rgba(163, 196, 220, 0.4)) drop-shadow(0 0 4px rgba(255, 255, 255, 0.6));
+            }
+            50% {
+                filter: drop-shadow(0 10px 15px rgba(197, 163, 220, 0.75)) drop-shadow(0 0 10px rgba(197, 163, 220, 0.5));
+            }
+        }
     </style>
 </head>
 <body class="pt-16">
-
 
 
     <!-- 導覽列 -->
