@@ -10,8 +10,8 @@
     <script src="https://unpkg.com/lucide@latest"></script>
     <style>
         :root {
-            --champagne: #e8e0ef;
-            --sage: #a3c4dc;
+            --hydrangea-mist: #e8e0ef;
+            --hydrangea-blue: #a3c4dc;
             --coral: #c5a3dc;
             --soft-pink: #f1f6fa;
         }
@@ -36,7 +36,7 @@
         }
         body {
             font-family: 'Zen Maru Gothic', 'Noto Sans TC', sans-serif;
-            background-color: #fffdfa;
+            background-color: #fcfdfe;
             color: #5a5a5a;
             scroll-behavior: smooth;
             letter-spacing: 0.02em;
@@ -51,7 +51,7 @@
             background: rgba(255, 255, 255, 0.9);
             backdrop-filter: blur(15px);
             -webkit-backdrop-filter: blur(15px);
-            border-bottom: 2px solid var(--champagne);
+            border-bottom: 2px solid var(--hydrangea-mist);
             position: fixed;
             top: 0;
             width: 100%;
@@ -65,7 +65,7 @@
             background-position: center;
             width: 100%;
             aspect-ratio: 3 / 2; /* 強制保持照片的 3:2 比例，這樣 cover 就不會裁切 */
-            border-bottom: 12px solid var(--champagne);
+            border-bottom: 12px solid var(--hydrangea-mist);
         }
         
         /* 倒數樣式 */
@@ -103,12 +103,16 @@
         }
 
         /* --- 修正後的婚禮倒數特效 --- */
-        @keyframes bounce { 0%, 100% { transform: translateY(0); } 50% { transform: translateY(-10px); } }
+         @keyframes bounce { 0%, 100% { transform: translateY(0); } 50% { transform: translateY(-10px); } }
         
         /* 呼吸光暈動畫 */
         @keyframes glow {
-            0%, 100% { box-shadow: 0 0 10px rgba(163, 196, 220, 0.4); }
-            50% { box-shadow: 0 0 25px rgba(197, 163, 220, 0.6); }
+            0%, 100% {
+                filter: drop-shadow(0 4px 8px rgba(163, 196, 220, 0.35)) drop-shadow(0 0 5px rgba(255, 255, 255, 0.6));
+            }
+            50% {
+                filter: drop-shadow(0 8px 20px rgba(197, 163, 220, 0.7)) drop-shadow(0 0 12px rgba(197, 163, 220, 0.4));
+            }
         }
         .timer-num {
             font-size: 1.3rem;
@@ -140,7 +144,7 @@
             padding: 20px;
             border-radius: 40px;
             box-shadow: 0 15px 35px rgba(247, 231, 206, 0.4);
-            border: 2px solid var(--champagne);
+            border: 2px solid var(--hydrangea-mist);
         }
 
         .calendar-day {
@@ -153,7 +157,7 @@
         }
 
         .engagement-day {
-            background-color: var(--sage);
+            background-color: var(--hydrangea-blue);
             color: white;
             border-radius: 50% 10% 50% 10%;
             font-weight: bold;
@@ -423,7 +427,7 @@
                 <div class="photo-grid-item shadow-lg" onclick="openLightbox('https://i.ibb.co/RGQbnFkB/TN20260507-Lance106.jpg')">
                     <img src="https://i.ibb.co/RGQbnFkB/TN20260507-Lance106.jpg" alt="婚紗照 3">
                 </div>
-                <div class="photo-grid-item shadow-lg" onclick="openLightbox('https://i.ibb.co/whT8WnWy/500101.jpgg')">
+                <div class="photo-grid-item shadow-lg" onclick="openLightbox('https://i.ibb.co/whT8WnWy/500101.jpg')">
                     <img src="https://i.ibb.co/whT8WnWy/500101.jpg" alt="婚紗照 4">
                 </div>
                 <div class="photo-grid-item shadow-lg" onclick="openLightbox('https://i.postimg.cc/BnKNgSDQ/PXL-20240222-034107761.jpg')">
