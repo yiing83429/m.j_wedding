@@ -393,6 +393,16 @@
                     <div class="bg-white p-6 rounded-3xl text-gray-500 text-sm md:text-base border-2 border-dashed border-[#e8e0ef]">
                         <p>🚗 <strong>停車資訊：</strong>餐廳附有免費汽機車停車場，路邊白線也可停車。</p>
                         <p class="mt-4">🚌 <strong>大眾交通資訊：</strong>搭乘火車至「隆田車站」轉搭大台南橘10公車至「總爺糖廠」下車，步行約10分鐘即可抵達。</p>
+                        <!-- 內嵌 Google Map 地圖 -->
+                        <div class="mt-6 rounded-2xl overflow-hidden shadow-md border-2 border-[#e8e0ef] aspect-video w-full h-[250px] md:h-[300px]">
+                            <iframe 
+                                src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3667.65349581179!2d120.2520846!3d23.1828336!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x346e6328691884bb%3A0xc6c76e2bc6894042!2z5paw5p2-5a2Q5pel5pys5paZ55CG!5e0!3m2!1szh-TW!2stw!4v1714316000000!5m2!1szh-TW!2stw" 
+                                class="w-full h-full border-0" 
+                                allowfullscreen="" 
+                                loading="lazy" 
+                                referrerpolicy="no-referrer-when-downgrade">
+                            </iframe>
+                        </div>
                     </div>
                 </div>
             </div>
@@ -573,7 +583,37 @@
             </div>
         </div>
     </section>
+    
+    <!-- 網頁作者聲明與實時訪問計數 -->
+    <section class="py-10 px-4">
+        <div class="max-w-md mx-auto bg-[#e8e0ef]/40 border-2 border-dashed border-[#c5a3dc] rounded-3xl p-6 text-center shadow-lg hover:shadow-xl transition-all duration-300">
+            <div class="flex items-center justify-center gap-2 mb-3 text-[#7a8fa6]">
+                <i data-lucide="code-2" class="w-5 h-5 text-[#c5a3dc]"></i>
+                <span class="font-black text-sm tracking-widest text-[#7a8fa6] uppercase">工商時間</span>
+            </div>
+            
+            <p class="text-gray-700 font-bold text-lg mb-2">
+                💻網頁開發 & 設計：<span class="text-[#c5a3dc] font-black text-xl drop-shadow-sm">新娘本人👩‍💻</span>
+            </p>
+            
+            <p class="text-xs text-gray-400 leading-relaxed mb-5 max-w-sm mx-auto">
+                📢 親愛的朋友們！抱歉無法提供網頁設計廠商，因為這是新娘自己弄的，請給不務正業的新娘一點 <strong>掌聲鼓勵</strong>👏✨，但目前沒有接案喔!實在太累了啦!
+            </p>
+            
+            <!-- 實時訪問計數器 -->
+            <div class="inline-flex items-center gap-3 bg-white/90 backdrop-filter backdrop-blur-sm px-5 py-2.5 rounded-full shadow-md border border-[#e8e0ef] transition-all">
+                <span class="relative flex h-2.5 w-2.5">
+                    <span class="animate-ping absolute inline-flex h-full w-full rounded-full bg-green-400 opacity-75"></span>
+                    <span class="relative inline-flex rounded-full h-2.5 w-2.5 bg-green-500"></span>
+                </span>
+                <span class="text-xs md:text-sm text-gray-500 font-bold tracking-wider">
+                    您是第 <span id="visit-count" class="text-[#a3c4dc] font-black text-lg px-1 animate-pulse">---</span> 位蒞臨的貴賓 🌸
+                </span>
+            </div>
+        </div>
+    </section>
 
+    
     <footer class="py-16 md:py-20 text-center text-gray-300 px-6">
         <div class="font-black text-2xl text-[#7a8fa6] mb-4">MingYang & JhihSyuan</div>
         <p class="text-l tracking-[0.2em] font-bold">2026.11.22 ‧ 我們婚禮見 </p>
