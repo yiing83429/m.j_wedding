@@ -656,6 +656,36 @@
             document.getElementById("seconds").innerText = s.toString().padStart(2, '0');
         }
         setInterval(updateTimer, 1000);
+        // 實時訪問計數器邏輯 (兼具 API 與 LocalStorage 的雙重防錯 fallback 機制)
+        async function initVisitorCounter() {
+            const countElement = document.getElementById('visit-count');
+            const localFallbackKey = 'wedding_invite_fallback_views';
+            
+            // 讀取/設定本地 LocalStorage fallback (修改為以 100 為起跳基準)
+            let localViews = parseInt(localStorage.getItem(localFallbackKey)) || 100;
+            localViews++;
+            localStorage.setItem(localFallbackKey, localViews);
+
+            try {
+                // 使用免費、無需 Key 且無限制的 CounterAPI V1
+                const response = await fetch('https://api.counterapi.dev/v1/mingyang-jhihsyuan-wedding/visits/up');
+                if (!response.ok) throw new Error('API server down');
+                
+                const data = await response.json();
+                if (data && typeof data.count === 'number') {
+                    // API 正常運作：顯示真實世界累積的總造訪次數，並加上 100 起跳
+                    countElement.innerText = data.count + 100;
+                    return;
+                }
+            } catch (error) {
+                console.warn('CounterAPI fallback active:', error);
+            }
+            
+            // 萬一 API 出錯或速度慢，直接採用本機 fallback (已是從 100 起跳自增)
+            countElement.innerText = localViews;
+        }
+
+         
         // 表單提交
         const form = document.getElementById('weddingForm');
         form.addEventListener('submit', function(e) {
@@ -671,6 +701,7 @@
         window.onload = () => { 
             lucide.createIcons(); 
             updateTimer(); 
+            initVisitorCounter(); // 初始化訪問人數計數器
         };
     </script>
 </body>
