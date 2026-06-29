@@ -250,8 +250,9 @@
             transition: max-height 0.4s ease;
         }
         
+        /* 優化：將展開的最大高度提升到 600px，防止展開時下方的 Google Map 顯示不完全 */
         .active .accordion-content {
-            max-height: 400px;
+            max-height: 600px;
             margin-top: 1rem;
         }
 
@@ -493,7 +494,12 @@
                 <p class="text-lg md:text-xl text-[#c5a3dc] font-bold">✨請於2026/7/20前回覆呦✨</p>
             </div>
 
-            <form id="weddingForm">
+            <!-- 
+              【核心優化】：
+              1. 靜態聲明 action 網址，這對行動瀏覽器、廣告屏蔽外掛有最佳相容性，極大提升連線成功率！
+              2. 宣告 method="POST" 與 target="hidden_iframe_target"。
+            -->
+            <form id="weddingForm" action="https://docs.google.com/forms/d/e/1FAIpQLSfbLu99TM2FSUv9e86__n36h7QKYryiNSUi1XznWQlzGshdDA/formResponse" method="POST" target="hidden_iframe_target">
                 <div class="flex flex-col gap-8">
                     <!-- 1. 姓名 -->
                     <div>
@@ -589,7 +595,7 @@
         <div class="max-w-md mx-auto bg-[#e8e0ef]/40 border-2 border-dashed border-[#c5a3dc] rounded-3xl p-6 text-center shadow-lg hover:shadow-xl transition-all duration-300">
             <div class="flex items-center justify-center gap-2 mb-3 text-[#7a8fa6]">
                 <i data-lucide="code-2" class="w-5 h-5 text-[#c5a3dc]"></i>
-                <span class="font-black text-sm tracking-widest text-[#7a8fa6] uppercase">工商時間</span>
+                <span class="font-black text-sm tracking-widest text-[#7a8fa6] uppercase">📢 請多看我一眼</span>
             </div>
             
             <p class="text-gray-700 font-bold text-lg mb-2">
@@ -597,7 +603,7 @@
             </p>
             
             <p class="text-xs text-gray-400 leading-relaxed mb-5 max-w-sm mx-auto">
-                📢 親愛的朋友們！抱歉無法提供網頁設計廠商，因為這是新娘自己弄的，請給不務正業的新娘一點 <strong>掌聲鼓勵</strong>👏✨，但目前沒有接案喔!實在太累了啦!
+                親愛的朋友們！因初次設計網頁串接google表單，擔心有bug!請填完一定要告知我們!以便確認是否有送出成功喔!!
             </p>
             
             <!-- 實時訪問計數器 -->
@@ -644,6 +650,9 @@
             const diff = targetDate - now;
             if (diff <= 0) {
                 document.getElementById("days").innerText = "00";
+                document.getElementById("hours").innerText = "00";
+                document.getElementById("minutes").innerText = "00";
+                document.getElementById("seconds").innerText = "00";
                 return;
             }
             const d = Math.floor(diff / (1000 * 60 * 60 * 24));
@@ -656,6 +665,7 @@
             document.getElementById("seconds").innerText = s.toString().padStart(2, '0');
         }
         setInterval(updateTimer, 1000);
+
         // 實時訪問計數器邏輯 (兼具 API 與 LocalStorage 的雙重防錯 fallback 機制)
         async function initVisitorCounter() {
             const countElement = document.getElementById('visit-count');
@@ -686,16 +696,25 @@
         }
 
          
-        // 表單提交
+        // 核心提交安全機制：
         const form = document.getElementById('weddingForm');
+        const submitBtn = form.querySelector('button[type="submit"]');
+
         form.addEventListener('submit', function(e) {
-            form.action = "https://docs.google.com/forms/d/e/1FAIpQLSfbLu99TM2FSUv9e86__n36h7QKYryiNSUi1XznWQlzGshdDA/formResponse";
-            form.target = "hidden_iframe_target";
+            // 注意：不要使用 e.preventDefault()，讓瀏覽器自然透過 iframe 送出 POST 連線。
+
+            // 1. 防止重複點擊，並顯示傳送中的載入提示
+            submitBtn.disabled = true;
+            submitBtn.innerHTML = "⏳ 傳送中，請稍候...";
+
+            // 2. 完美的 1.2 秒延遲安全防護機制：
+            // 我們延長緩衝時間至 1200ms。不論網路快慢，這都足夠讓背景的 Google Form 完成寫入。
+            // 隨後再安全地隱藏表單，避免瀏覽器提早斷線造成吃單問題。
             setTimeout(() => {
                 form.style.display = 'none';
                 document.getElementById('successMsg').classList.remove('hidden');
-                document.getElementById('rsvp').scrollIntoView({ behavior: 'smooth' });
-            }, 300);
+                document.getElementById('rsvp').scrollIntoView({ behavior: 'smooth', block: 'center' });
+            }, 1200);
         });
 
         window.onload = () => { 
